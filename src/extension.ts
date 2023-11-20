@@ -1,5 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
+
+import fs from 'fs';
 import * as vscode from 'vscode';
 
 // This method is called when your extension is activated
@@ -12,8 +14,24 @@ export async function activate(context: vscode.ExtensionContext) {
   // statusBarItem.tooltip
   context.subscriptions.push(statusBarItem);
 
-  const version = await getPackageVersion();
+  const packageJsonPath = getPackageUri();
 
+  if (!packageJsonPath) {
+    return;
+  }
+
+  const version = await getPackageVersion(packageJsonPath);
+
+  displayPackageVersion(statusBarItem, version);
+
+  fs.watch(packageJsonPath.fsPath, { encoding: 'utf-8' }, async (evenType, fileName) => {
+    const version = await getPackageVersion(packageJsonPath);
+
+    displayPackageVersion(statusBarItem, version);
+  });
+}
+
+async function displayPackageVersion(statusBarItem: vscode.StatusBarItem, version: string) {
   if (!version) {
     return;
   }
@@ -27,14 +45,7 @@ export async function activate(context: vscode.ExtensionContext) {
   statusBarItem.text = displayVersion;
 }
 
-async function getPackageVersion() {
-  const workspace = vscode.workspace.workspaceFolders?.[0].uri;
-  if (!workspace) {
-    return '';
-  }
-
-  const packageJsonPath = vscode.Uri.joinPath(workspace, 'package.json');
-
+async function getPackageVersion(packageJsonPath: vscode.Uri) {
   try {
     const byteArray = await vscode.workspace.fs.readFile(packageJsonPath);
     const content = new TextDecoder().decode(byteArray);
@@ -45,6 +56,17 @@ async function getPackageVersion() {
   } catch (error) {
     return '';
   }
+}
+
+function getPackageUri() {
+  const workspace = vscode.workspace.workspaceFolders?.[0].uri;
+  if (!workspace) {
+    return '';
+  }
+
+  const packageJsonPath = vscode.Uri.joinPath(workspace, 'package.json');
+
+  return packageJsonPath;
 }
 
 // This method is called when your extension is deactivated
