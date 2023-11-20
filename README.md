@@ -3,7 +3,7 @@ This extension make it easy to see the version of your current working no JavaSc
 
 ## Installation
 
-Download it from the [VSCode Extension Marketplace]()
+Download it from the [VSCode Extension Marketplace](https://marketplace.visualstudio.com/items?itemName=EduardoPetrini.package-version-display)
 
 ## How does it work?
 This is a package.json file example:
