@@ -8,10 +8,11 @@ Download it from the [VSCode Extension Marketplace]()
 ## How does it work?
 This is a package.json file example:
 
-![Your package.json](docs/images/package-json.png)
+![Your package.json](https://raw.githubusercontent.com/EduardoPetrini/package-version-display/main/docs/images/package-json.png)
 
 Here is how the extension displays the version on VSCode's status bar:
-![Your package.json](docs/images/display-version.png)
+
+![Your package.json](https://raw.githubusercontent.com/EduardoPetrini/package-version-display/main/docs/images/display-version.png)
 
 ## Requirements
 
