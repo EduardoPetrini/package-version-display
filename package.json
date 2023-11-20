@@ -2,7 +2,7 @@
   "name": "package-version-display",
   "displayName": "package-version-display",
   "description": "Nice display of your current package.json's version field",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "EduardoPetrini",
   "repository": {
     "url": "https://github.com/EduardoPetrini/package-version-display"
