@@ -1,5 +1,5 @@
 # The Package Version Display - VSCode Extension
-This extension make it easy to see the version of your current working no JavaScript/TypeScript module.
+This extension makes it easy to see the version of your current working no JavaScript/TypeScript module.
 
 ## Installation
 
@@ -16,5 +16,5 @@ Here is how the extension displays the version on VSCode's status bar:
 
 ## Requirements
 
-Currently it works only for JavaScript/TypeScript modules.
+Currently, it works only for JavaScript/TypeScript modules.
 They must contain the package.json file.
